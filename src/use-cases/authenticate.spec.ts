@@ -1,7 +1,7 @@
 import { expect, describe, it, beforeEach } from "vitest";
 import { RegisterUseCase } from "./register";
 import { compare, hash } from "bcryptjs";
-import { InMemoryUsersRepository } from "../repositories/in-memory/in-memory-repository";
+import { InMemoryUsersRepository } from "../repositories/in-memory/in-memory-users-repository";
 import { UserAlreadyExistsError } from "./errors/user-already-exists-error";
 import { AuthenticateUseCase } from "./authenticate";
 import { InvalidCredentialsError } from "./errors/invalid-credentials-error";
@@ -33,7 +33,7 @@ describe("Authenticate Use Case", () => {
   });
 
   it("should not be able to autheticate with wrong email", async () => {
-    expect(() =>
+    await expect(() =>
       authenticateUseCase.execute({
         email: "johndoe@example.com",
         password: "123456",
@@ -48,7 +48,7 @@ describe("Authenticate Use Case", () => {
       password_hash: await hash("123456", 6),
     });
 
-    expect(() =>
+    await expect(() =>
       authenticateUseCase.execute({
         email: "johndoe@example.com",
         password: "121212",
