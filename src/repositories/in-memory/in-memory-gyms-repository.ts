@@ -5,7 +5,7 @@ import { randomUUID } from "node:crypto";
 export class InMemoryGymsRepository implements GymsRepository {
   public items: Gym[] = [];
 
-  async findById(gymId: string): Promise<Gym | null> {
+  async findById(gymId: string) {
     const gym = this.items.find((gym) => gym.id === gymId);
 
     if (!gym) {
