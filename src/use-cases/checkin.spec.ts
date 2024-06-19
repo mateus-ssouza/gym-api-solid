@@ -8,13 +8,13 @@ import { MaxDistanceError } from "./errors/max-distance-error";
 
 let checkInsRepository: InMemoryCheckInsRepository;
 let gymsRepository: InMemoryGymsRepository;
-let checkInUseCase: CheckInUseCase;
+let sut: CheckInUseCase;
 
 describe("Get User Profile Use Case", () => {
   beforeEach(async () => {
     checkInsRepository = new InMemoryCheckInsRepository();
     gymsRepository = new InMemoryGymsRepository();
-    checkInUseCase = new CheckInUseCase(checkInsRepository, gymsRepository);
+    sut = new CheckInUseCase(checkInsRepository, gymsRepository);
 
     await gymsRepository.create({
       id: "gym-01",
@@ -33,7 +33,7 @@ describe("Get User Profile Use Case", () => {
   });
 
   it("should be able to check in", async () => {
-    const { checkIn } = await checkInUseCase.execute({
+    const { checkIn } = await sut.execute({
       gymId: "gym-01",
       userId: "user-01",
       userLatitude: -27.8747059,
@@ -46,7 +46,7 @@ describe("Get User Profile Use Case", () => {
   it("should not be able to check in twice in the same day", async () => {
     vi.setSystemTime(new Date(2023, 0, 20, 8, 0, 0));
 
-    await checkInUseCase.execute({
+    await sut.execute({
       gymId: "gym-01",
       userId: "user-01",
       userLatitude: -27.8747059,
@@ -54,7 +54,7 @@ describe("Get User Profile Use Case", () => {
     });
 
     await expect(() =>
-      checkInUseCase.execute({
+      sut.execute({
         gymId: "gym-01",
         userId: "user-01",
         userLatitude: -27.8747059,
@@ -66,7 +66,7 @@ describe("Get User Profile Use Case", () => {
   it("should not be able to check in twice but in different days", async () => {
     vi.setSystemTime(new Date(2024, 0, 20, 0, 0));
 
-    await checkInUseCase.execute({
+    await sut.execute({
       gymId: "gym-01",
       userId: "user-01",
       userLatitude: -27.8747059,
@@ -75,7 +75,7 @@ describe("Get User Profile Use Case", () => {
 
     vi.setSystemTime(new Date(2024, 0, 21, 0, 0));
 
-    const { checkIn } = await checkInUseCase.execute({
+    const { checkIn } = await sut.execute({
       gymId: "gym-01",
       userId: "user-01",
       userLatitude: -27.8747059,
@@ -96,7 +96,7 @@ describe("Get User Profile Use Case", () => {
     });
 
     await expect(() =>
-      checkInUseCase.execute({
+      sut.execute({
         gymId: "gym-02",
         userId: "user-01",
         userLatitude: -27.8747059,
