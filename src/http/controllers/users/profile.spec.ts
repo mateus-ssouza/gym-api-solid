@@ -1,5 +1,5 @@
 import request from "supertest";
-import { app } from "../../app";
+import { app } from "../../../app";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 
 describe("Profile User Controller (e2e)", () => {
