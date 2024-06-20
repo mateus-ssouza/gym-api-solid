@@ -3,7 +3,7 @@ import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { app } from "../../../app";
 import { createAndAuthenticateUser } from "../../../utils/test/create-and-authenticate-user";
 
-describe("Search Gym Controller (e2e)", () => {
+describe("Search Gym (e2e)", () => {
   beforeAll(async () => {
     await app.ready();
   });
