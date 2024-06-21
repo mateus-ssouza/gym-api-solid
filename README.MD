@@ -2,6 +2,14 @@
 
 API GymPass style app.
 
+## Índice
+
+- [Descrição do Projeto](#descrição-do-projeto)
+- [Instalação](#como-instalar)
+- [Executando a aplicação](#como-executar-o-app)
+- [Requisitos do projeto](#requisitos-do-projeto)
+- [Tecnologias utilizadas](#tecnologias-utilizadas)
+
 ## Descrição do Projeto
 
 A API permite que os usuários realizem ações como:
