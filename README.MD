@@ -5,8 +5,8 @@ API GymPass style app.
 ## Índice
 
 - [Descrição do Projeto](#descrição-do-projeto)
-- [Instalação](#como-instalar)
-- [Executando a aplicação](#como-executar-o-app)
+- [Instalação](#instalação)
+- [Executando a aplicação](#executando-a-aplicação)
 - [Requisitos do projeto](#requisitos-do-projeto)
 - [Tecnologias utilizadas](#tecnologias-utilizadas)
 
